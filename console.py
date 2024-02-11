@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 import cmd
 
+
 class HBNBCommand(cmd.Cmd):
-    intro = "Hello, type 'help' and start exploring.."
+    intro = "Karibu, type 'help' and start exploring.."
     prompt = "(hbnb)"
 
     def do_quit(self, *args):
