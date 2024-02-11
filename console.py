@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import cmd
+from models.base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -15,6 +16,10 @@ class HBNBCommand(cmd.Cmd):
         """Exits the program"""
         print("Goodbye!")
         return True
+
+    def do_create(self, *args):
+        """Creates an instance of BaseModel"""
+        obj = BaseModel()
 
 
 if __name__ == '__main__':

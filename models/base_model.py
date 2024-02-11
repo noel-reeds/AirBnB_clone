@@ -6,7 +6,7 @@ import json
 
 class BaseModel():
     """Defines all common attr./methods for other classes"""
-    def __init__(self):
+    def __init__(self, *args, **kwargs):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now().isoformat
         self.updated_at = datetime.now().isoformat
