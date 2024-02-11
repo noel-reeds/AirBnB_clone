@@ -1,19 +1,20 @@
 #!/usr/bin/python3
 import uuid
-import datetime
+from datetime import datetime
 import json
 
 
 class BaseModel():
     """Defines all common attr./methods for other classes"""
-    id = str(uuid.uuid4())
-    created_at = isoformat(datetime.now())
-    updated_at =
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.now().isoformat
+        self.updated_at = datetime.now().isoformat
 
     def save(self):
         """ updates the public instance attribute updated_at
         with the current datetime"""
-        pass
+        self.updated_at = datetime.now().isoformat
 
     def to_dict(self):
         """returns a dictionary containing all keys/values
