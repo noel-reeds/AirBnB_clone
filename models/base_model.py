@@ -6,7 +6,7 @@ import json
 
 class BaseModel():
     """Defines all common attr./methods for other classes"""
-    def __init__(self, *args, **kwargs):
+    def __init__(self, id, created_at, updated_at):
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
@@ -18,7 +18,7 @@ class BaseModel():
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
-        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
         """returns a dictionary containing all keys/values
@@ -26,5 +26,5 @@ class BaseModel():
         self.created_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         self.updated_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         object_dict = self.__dict__.copy()
-        object_dict['__class__'] = type(self).__name__
+        object_dict['__class__'] = self.__class__.__name__
         return object_dict
