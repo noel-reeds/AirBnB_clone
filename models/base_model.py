@@ -16,14 +16,15 @@ class BaseModel():
         with the current datetime"""
         self.updated_at = datetime.now()
 
+    def __str__(self):
+        """returns an unofficial str rep' of an instance"""
+        return f"[{type(self).__name__}] ({self.id}) {self.__dict__}"
+
     def to_dict(self):
         """returns a dictionary containing all keys/values
         of __dict__ of the instance"""
-        return self.__dict__
-
-    def __str__(self):
         self.created_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         self.updated_at = datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
         object_dict = self.__dict__.copy()
         object_dict['__class__'] = type(self).__name__
-        return f"[{type(self).__name__}] ({self.id}) {object_dict}"
+        return object_dict
