@@ -6,7 +6,17 @@ import json
 
 class BaseModel():
     """Defines all common attr./methods for other classes"""
-    def __init__(self, id, created_at, updated_at):
+    def __init__(self, *args, **kwargs):
+        if kwargs is not None:
+            for key in kwargs.copy():
+                if key == "__class__":
+                    kwargs.pop("__class__")
+                if key == "created_at":
+                    self.created_at = datetime.\
+                        strptime(kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+                if key == "updated_at":
+                    self.updated_at = datetime.\
+                        strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
