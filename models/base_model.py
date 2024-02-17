@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import uuid
 from datetime import datetime
 import json
@@ -20,3 +20,8 @@ class BaseModel():
         """returns a dictionary containing all keys/values
         of __dict__ of the instance"""
         return self.__dict__
+
+    def __str__(self):
+        object_dict = self.__dict__.copy()
+        object_dict['__class__'] = type(self).__name__
+        return f"[{type(self).__name__}] ({self.id}) {object_dict}"
