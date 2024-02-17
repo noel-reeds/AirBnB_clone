@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 import uuid
-from datetime import datetime
 import json
+from models.__init__ import storage
+from models.engine.file_storage import FileStorage
+from datetime import datetime
 
 
-class BaseModel():
+class BaseModel:
     """Defines all common attr./methods for other classes"""
     def __init__(self, *args, **kwargs):
         if kwargs is not None:
@@ -20,11 +22,13 @@ class BaseModel():
         self.id = str(uuid.uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
+        FileStorage.new(self, storage)
 
     def save(self):
         """ updates the public instance attribute updated_at
         with the current datetime"""
         self.updated_at = datetime.now()
+        storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
