@@ -10,15 +10,16 @@ class BaseModel:
     """Defines all common attr./methods for other classes"""
     def __init__(self, *args, **kwargs):
         if kwargs:
-            for key in kwargs.copy():
-                if key == "__class__":
-                    kwargs.pop("__class__")
-                if key == "created_at":
-                    self.created_at = datetime.\
-                        strptime(kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-                if key == "updated_at":
-                    self.updated_at = datetime.\
-                        strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+            if "__class__" in kwargs:
+                del kwargs["__class__"]
+            if "created_at" in kwargs:
+                kwargs["created"] = datetime.\
+                    strptime(kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
+            if "updated_at" in kwargs:
+                kwargs["updated_at"] = datetime.\
+                    strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
+            for key, value in kwargs.items():
+                setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
