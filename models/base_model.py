@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 import uuid
-import json
 from models import storage
-from models.engine.file_storage import FileStorage
 from datetime import datetime
 
 
