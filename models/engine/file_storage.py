@@ -27,12 +27,20 @@ class FileStorage:
             json.dump(serialized_objects, myfile)
 
     def reload(self):
-        """Deserializes a JSON file into a Python object"""
+        """Deserializes a JSON file into __objects"""
+        classes = {"BaseModel": BaseModel, "Amenity": Amenity,
+                    "City": City, "Place": Place, "State": State,
+                    "Review": Review, "User": User
+                }
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") \
                     as my_file:
-                res_object = json.load(my_file)
+                python_obj = json.load(my_file)
+            for key, value in python_obj.items():
+                class_name, obj_id = key.split('.')
+                if class_name in classes:
+                    obj_class_name = classes[class_name]
+                    instance = obj_class_name(**value)
+                    self.__objects[key] = instance
         except FileNotFoundError:
-            return
-        except json.JSONDecodeError as e:
-            print(f"Error decoding JSON: {e}")
+            pass
