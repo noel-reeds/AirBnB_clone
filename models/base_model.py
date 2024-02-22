@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 import uuid
-from models import storage
 from datetime import datetime
 
 
 class BaseModel:
     """Defines all common attr./methods for other classes"""
     def __init__(self, *args, **kwargs):
+        from models import storage
         if kwargs:
-            if "__class__" in kwargs:
+            if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
-            if "created_at" in kwargs:
-                kwargs["created"] = datetime.\
+            if "created_at" in kwargs.keys():
+                kwargs["created_at"] = datetime.\
                     strptime(kwargs["created_at"], "%Y-%m-%dT%H:%M:%S.%f")
-            if "updated_at" in kwargs:
+            if "updated_at" in kwargs.keys():
                 kwargs["updated_at"] = datetime.\
                     strptime(kwargs["updated_at"], "%Y-%m-%dT%H:%M:%S.%f")
             for key, value in kwargs.items():
@@ -27,6 +27,7 @@ class BaseModel:
     def save(self):
         """ updates the public instance attribute updated_at
         with the current datetime"""
+        from models import storage
         self.updated_at = datetime.now()
         storage.save()
 
