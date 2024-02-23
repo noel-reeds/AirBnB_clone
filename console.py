@@ -69,5 +69,6 @@ instances based or not on the class name"""
         """Updates an instance based on the class name and id"""
         pass
 
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
