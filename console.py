@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
 import sys
 
 
@@ -69,5 +68,6 @@ instances based or not on the class name"""
     def do_update(self, *args):
         """Updates an instance based on the class name and id"""
         pass
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

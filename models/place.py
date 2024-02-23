@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 """More classes"""
-import BaseModel
+from models.base_model import BaseModel
 
 
 class Place(BaseModel):
     city_id = ""
-    user.id = ""
+    user_id = ""
     name = ""
     description = ""
     number_rooms = 0
