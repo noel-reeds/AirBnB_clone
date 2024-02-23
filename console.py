@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""The console module"""
 import cmd
 from models.base_model import BaseModel
 import sys
