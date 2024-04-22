@@ -28,3 +28,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(state, State)
         self.assertIsInstance(review, Review)
         self.assertIsInstance(user, User)
+
+    def test_attrs(self):
+        """Tests for attrs"""
+        base = BaseModel()
+        self.assertIsInstance(base, BaseModel)
+        self.assertIn('id', base.__dict__.keys())
+        self.assertIn('created_at', base.__dict__.keys())
+        self.assertIn('updated_at', base.__dict__.keys())
