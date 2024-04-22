@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """Tests 'Base Model' module"""
+from unittest.mock import patch
 import unittest
 from models.base_model import BaseModel
 from datetime import datetime
@@ -25,6 +26,7 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         base = BaseModel()
+        base.save()
         self.assertIsInstance(base.__dict__['updated_at'], datetime)
 
     def test_str(self):
