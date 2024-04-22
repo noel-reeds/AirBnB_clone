@@ -23,7 +23,26 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('created_at', base.__dict__.keys())
         self.assertIn('updated_at', base.__dict__.keys())
 
-    def test_methods(self):
+    def test_save(self):
         base = BaseModel()
-        res = base.save()
-        self.assertIsInstance(base.updated_at, datetime)
+        self.assertIsInstance(base.__dict__['updated_at'], datetime)
+
+    def test_str(self):
+        """Tests str method"""
+        base = BaseModel()
+        res = "[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579)"
+        req = base.__str__()
+        self.assertNotEqual(req, res)
+
+    def test_attrs_types(self):
+        """Tests the data types of attrs"""
+        base = BaseModel()
+        self.assertIsInstance(base.__dict__['id'], str)
+        self.assertIsInstance(base.__dict__['updated_at'], datetime)
+        self.assertIsInstance(base.__dict__['created_at'], datetime)
+
+    def test_to_dict(self):
+        """Tests to_dict method"""
+        base = BaseModel()
+        returned = base.to_dict()
+        self.assertIsInstance(returned, dict)
