@@ -11,9 +11,11 @@ class BaseModel:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
             if "created_at" in kwargs.keys():
-                kwargs["created_at"] = datetime.fromisoformat(kwargs["created_at"])
+                kwargs["created_at"] = datetime.\
+                    fromisoformat(kwargs["created_at"])
             if "updated_at" in kwargs.keys():
-                kwargs["updated_at"] = datetime.fromisoformat(kwargs["updated_at"])
+                kwargs["updated_at"] = datetime.\
+                    fromisoformat(kwargs["updated_at"])
             for key, value in kwargs.items():
                 setattr(self, key, value)
         else:
