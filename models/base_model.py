@@ -26,17 +26,15 @@ class BaseModel:
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
-        from models import storage
         self.updated_at = datetime.now()
-        storage.save()
+        # storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
-        """returns a dictionary containing all keys/values
-        of __dict__ of the instance"""
+        """Returns a key-value pair of the instance"""
         new_dict = dict(self.__dict__)
         new_dict['created_at'] = new_dict['created_at'].isoformat()
         new_dict['updated_at'] = new_dict['updated_at'].isoformat()
