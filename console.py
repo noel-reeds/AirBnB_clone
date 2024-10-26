@@ -6,8 +6,7 @@ import sys
 
 
 class HBNBCommand(cmd.Cmd):
-    intro = "Karibu, type 'help' and start exploring.."
-    prompt = "(hbnb)"
+    prompt = "(hbnb) "
 
     def do_quit(self, *args):
         """Exits the console."""
@@ -72,4 +71,8 @@ instances based or not on the class name"""
 
 
 if __name__ == '__main__':
-    HBNBCommand().cmdloop()
+    import sys
+    if len(sys.argv) > 1:
+        HBNBCommand().onecmd(' '.join(sysargv[1:]))
+    else:
+        HBNBCommand().cmdloop("Karibu, type 'help' and start exploring..")
