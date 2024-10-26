@@ -35,7 +35,7 @@ class BaseModel:
 
     def to_dict(self):
         """Returns a key-value pair of the instance"""
-        new_dict = dict(self.__dict__)
+        new_dict = self.__dict__
         new_dict['created_at'] = new_dict['created_at'].isoformat()
         new_dict['updated_at'] = new_dict['updated_at'].isoformat()
         new_dict['__class__'] = self.__class__.__name__
