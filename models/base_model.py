@@ -10,10 +10,10 @@ class BaseModel:
         if kwargs:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
-            if "created_at" in kwargs.keys():
+            elif "created_at" in kwargs.keys():
                 kwargs["created_at"] = datetime.\
                     fromisoformat(kwargs["created_at"])
-            if "updated_at" in kwargs.keys():
+            elif "updated_at" in kwargs.keys():
                 kwargs["updated_at"] = datetime.\
                     fromisoformat(kwargs["updated_at"])
             for key, value in kwargs.items():
@@ -26,8 +26,9 @@ class BaseModel:
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
+        from models import storage
         self.updated_at = datetime.now()
-        # storage.save()
+        storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
@@ -35,8 +36,8 @@ class BaseModel:
 
     def to_dict(self):
         """Returns a key-value pair of the instance"""
-        new_dict = self.__dict__
-        new_dict['created_at'] = new_dict['created_at'].isoformat()
-        new_dict['updated_at'] = new_dict['updated_at'].isoformat()
-        new_dict['__class__'] = self.__class__.__name__
-        return new_dict
+        attrs = self.__dict__
+        attrs['created_at'] = attrs['created_at'].isoformat()
+        attrs['updated_at'] = attrs['updated_at'].isoformat()
+        attrs['__class__'] = self.__class__.__name__
+        return attrs
