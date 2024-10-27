@@ -43,9 +43,8 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Tests str method"""
         base = BaseModel()
-        res = "[BaseModel] (b6a6e15c-c67d-4312-9a75-9d084935e579)"
         req = base.__str__()
-        self.assertNotEqual(req, res)
+        self.assertIsInstance(req, str)
 
     def test_attrs_types(self):
         """Tests the data types of attrs"""
