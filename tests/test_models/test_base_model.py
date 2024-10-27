@@ -55,8 +55,16 @@ class TestBaseModel(unittest.TestCase):
     def test_to_dict(self):
         """Tests to_dict method"""
         base = BaseModel()
+        attrs = base.__dict__
         returned = base.to_dict()
         self.assertIsInstance(returned, dict)
+        self.assertIn('updated_at', attrs.keys())
+        self.assertIn('created_at', attrs.keys())
+        self.assertIn('__class__', attrs.keys())
+        self.assertIsInstance(attrs['created_at'], str)
+        self.assertIsInstance(attrs['updated_at'], str)
+        self.assertIn(attrs['updated_at'], attrs.values())
+        self.assertIn(attrs['created_at'], attrs.values())
 
 if __name__ == "__main__":
     unittest.main()
