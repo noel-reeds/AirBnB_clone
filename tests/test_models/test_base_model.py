@@ -33,6 +33,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('updated_at', attrs.keys())
         self.assertIsNotNone(attrs['updated_at'])
         self.assertIn(attrs['updated_at'], attrs.values())
+        self.assertNotIsInstance(attrs['updated_at'], str)
+        self.assertNotIsInstance(attrs['updated_at'], int)
+        self.assertNotIsInstance(attrs['updated_at'], dict)
+        self.assertNotIsInstance(attrs['updated_at'], list)
 
     def test_str(self):
         """Tests str method"""
