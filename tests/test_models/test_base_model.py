@@ -30,6 +30,7 @@ class TestBaseModel(unittest.TestCase):
         attrs = base.__dict__
         self.assertIsInstance(attrs['updated_at'], datetime)
         self.assertNotEqual(attrs['updated_at'], attrs['created_at'])
+        self.assertIn('updated_at', attrs.keys())
 
     def test_str(self):
         """Tests str method"""
