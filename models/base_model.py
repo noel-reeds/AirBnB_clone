@@ -9,10 +9,10 @@ class BaseModel:
         if kwargs:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
-            elif "created_at" in kwargs.keys():
+            if "created_at" in kwargs.keys():
                 kwargs["created_at"] = datetime.\
                     fromisoformat(kwargs["created_at"])
-            elif "updated_at" in kwargs.keys():
+            if "updated_at" in kwargs.keys():
                 kwargs["updated_at"] = datetime.\
                     fromisoformat(kwargs["updated_at"])
             for key, value in kwargs.items():
@@ -21,10 +21,12 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            # storage.new(self)
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
-        self.updated_at = datetime.now()
+        self.updated_at = datetime.today()
+        # storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
