@@ -6,7 +6,6 @@ from datetime import datetime
 class BaseModel:
     """Defines all common attr./methods for other classes"""
     def __init__(self, *args, **kwargs):
-        from models import storage
         if kwargs:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
@@ -22,13 +21,10 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
-            storage.new(self)
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
-        from models import storage
         self.updated_at = datetime.now()
-        storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
