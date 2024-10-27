@@ -27,7 +27,9 @@ class TestBaseModel(unittest.TestCase):
     def test_save(self):
         base = BaseModel()
         base.save()
-        self.assertIsInstance(base.__dict__['updated_at'], datetime)
+        attrs = base.__dict__
+        self.assertIsInstance(attrs['updated_at'], datetime)
+        self.assertNotEqual(attrs['updated_at'], attrs['created_at'])
 
     def test_str(self):
         """Tests str method"""
@@ -48,3 +50,6 @@ class TestBaseModel(unittest.TestCase):
         base = BaseModel()
         returned = base.to_dict()
         self.assertIsInstance(returned, dict)
+
+if __name__ == "__main__":
+    unittest.main()
