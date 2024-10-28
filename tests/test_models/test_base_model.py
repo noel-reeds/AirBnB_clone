@@ -29,6 +29,8 @@ class TestBaseModel(unittest.TestCase):
         base_model.save()
         base_attrs = base_model.__dict__
         self.assertIsInstance(base_attrs['updated_at'], datetime)
+        self.assertIsInstance(base_attrs['created_at'], datetime)
+        self.assertNotIsInstance(base_attrs['updated_at'], str)
         self.assertNotEqual(base_attrs['updated_at'], base_attrs['created_at'])
         self.assertIn('updated_at', base_attrs.keys())
         self.assertIn('id', base_attrs.keys())
@@ -42,8 +44,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(len(base_attrs.keys()), 3)
         self.assertTrue(base_attrs['updated_at'] != base_attrs['created_at'])
         self.assertTrue(base_attrs['updated_at'] > base_attrs['created_at'])
+
         # format of date_str
-        # compare updated_at and created_at date_str
         # compare timestaps
 
     def test_str(self):
