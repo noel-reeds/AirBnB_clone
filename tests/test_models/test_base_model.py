@@ -44,7 +44,8 @@ class TestBaseModel(unittest.TestCase):
         """Tests str method"""
         base = BaseModel()
         req = base.__str__()
-        self.assertEqual(print(req), print(base))
+        self.assertEqual(base.__str__(), str(base))
+        self.assertIsInstance(base.__str__(), str)
         self.assertIsInstance(req, str)
 
     def test_attrs_types(self):
