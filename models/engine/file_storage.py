@@ -12,7 +12,7 @@ from models.user import User
 
 class FileStorage:
     """Serializes and deserializes data structures and objects"""
-    __file_path = "file.json"
+    __file_path = "file2.json"
     __objects = {}
 
     def all(self):
@@ -28,17 +28,23 @@ class FileStorage:
         """Serializes __objects to JSON file"""
         serialized_objects = {}
         for key, value in self.__objects.items():
+            # value here references an object at the specified key
+            # hence the call to_dict method on line 33.
             serialized_objects[key] = value.to_dict()
-        with open(self.__file_path, mode="w", encoding="utf-8") \
-                as myfile:
-            json.dump(serialized_objects, myfile)
+        with open(self.__file_path, mode="w", encoding="utf-8") as my_file:
+            json.dump(serialized_objects, my_file)
 
     def reload(self):
         """Deserializes a JSON file into __objects"""
-        classes = {"BaseModel": BaseModel, "Amenity": Amenity,
-                    "City": City, "Place": Place, "State": State,
-                    "Review": Review, "User": User
-                }
+        classes = {
+            "BaseModel": BaseModel,
+            "Amenity": Amenity,
+            "City": City,
+            "Place": Place,
+            "State": State,
+            "Review": Review,
+            "User": User
+            }
         try:
             with open(self.__file_path, mode="r", encoding="utf-8") \
                     as my_file:
