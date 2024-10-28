@@ -38,6 +38,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(base_attrs['created_at'], base_attrs.values())
         self.assertIn(base_attrs['id'], base_attrs.values())
         self.assertIsNone(base_model.save())
+        self.assertTrue('updated_at' in base_attrs.keys())
         
 
     def test_str(self):
