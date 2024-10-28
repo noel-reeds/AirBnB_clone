@@ -41,6 +41,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertTrue('updated_at' in base_attrs.keys())
         self.assertEqual(len(base_attrs.keys()), 3)
         self.assertTrue(base_attrs['updated_at'] != base_attrs['created_at'])
+        self.assertTrue(base_attrs['updated_at'] > base_attrs['created_at'])
         # format of date_str
         # compare updated_at and created_at date_str
         # compare timestaps
