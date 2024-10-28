@@ -43,10 +43,22 @@ class TestBaseModel(unittest.TestCase):
     def test_str(self):
         """Tests str method"""
         base = BaseModel()
-        req = base.__str__()
-        self.assertEqual(base.__str__(), str(base))
-        self.assertIsInstance(base.__str__(), str)
-        self.assertIsInstance(req, str)
+        base_dictionary = base.to_dict()
+        class_name = base.__class__.__name__
+        base_id = base.id
+        base_attrs = base.__dict__
+        base_str = base.__str__()
+        self.assertEqual(base_str, str(base))
+        self.assertIsInstance(base_str, str)
+        self.assertTrue(base_str.startswith('[BaseModel]'))
+        self.assertTrue(base_str.startswith(f"[{class_name}]"))
+        self.assertTrue(f"[{class_name}] ({base_id}) {base_attrs}")
+        self.assertEqual(f"[{class_name}] ({base_id}) {base_attrs}", str(base))
+        self.assertTrue(base_str.endswith(f"{base_attrs}"))
+        self.assertEqual(base_id, base_attrs['id'])
+        self.assertIn(base_id, base_attrs.values())
+        self.assertIn(class_name, base_attrs.values())
+        self.assertEqual(class_name, base_dictionary['__class__'])
 
     def test_attrs_types(self):
         """Tests the data types of attrs"""
