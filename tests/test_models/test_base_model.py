@@ -31,6 +31,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(base_attrs['updated_at'], datetime)
         self.assertNotEqual(base_attrs['updated_at'], base_attrs['created_at'])
         self.assertIn('updated_at', base_attrs.keys())
+        self.assertIn('id', base_attrs.keys())
+        self.assertIn('created_at', base_attrs.keys())
         self.assertIsNotNone(base_attrs['updated_at'])
         self.assertIn(base_attrs['updated_at'], base_attrs.values())
         self.assertIn(base_attrs['created_at'], base_attrs.values())
