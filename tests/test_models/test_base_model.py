@@ -39,7 +39,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn(base_attrs['id'], base_attrs.values())
         self.assertIsNone(base_model.save())
         self.assertTrue('updated_at' in base_attrs.keys())
-        
+        self.assertEqual(len(base_attrs.keys()), 3)
+        self.assertTrue(base_attrs['updated_at'] != base_attrs['created_at'])
+        # format of date_str
+        # compare updated_at and created_at date_str
+        # compare timestaps
 
     def test_str(self):
         """Tests str method"""
@@ -81,6 +85,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(attrs['updated_at'], str)
         self.assertIn(attrs['updated_at'], attrs.values())
         self.assertIn(attrs['created_at'], attrs.values())
+
 
 if __name__ == "__main__":
     unittest.main()
