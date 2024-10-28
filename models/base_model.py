@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import uuid
-from datetime import datetime
+from datetime import datetime as dt
 
 
 class BaseModel:
@@ -10,22 +10,20 @@ class BaseModel:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
             if "created_at" in kwargs.keys():
-                kwargs["created_at"] = datetime.\
-                    fromisoformat(kwargs["created_at"])
+                kwargs["created_at"] = dt.fromisoformat(kwargs["created_at"])
             if "updated_at" in kwargs.keys():
-                kwargs["updated_at"] = datetime.\
-                    fromisoformat(kwargs["updated_at"])
+                kwargs["updated_at"] = dt.fromisoformat(kwargs["updated_at"])
             for key, value in kwargs.items():
                 setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            self.created_at = dt.now()
+            self.updated_at = dt.now()
             # storage.new(self)
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
-        self.updated_at = datetime.now()
+        self.updated_at = dt.now()
         # storage.save()
 
     def __str__(self):
