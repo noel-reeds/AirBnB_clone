@@ -25,20 +25,18 @@ class TestBaseModel(unittest.TestCase):
         self.assertIn('updated_at', base.__dict__.keys())
 
     def test_save(self):
-        base = BaseModel()
-        base.save()
-        attrs = base.__dict__
-        self.assertIsInstance(attrs['updated_at'], datetime)
-        self.assertNotEqual(attrs['updated_at'], attrs['created_at'])
-        self.assertIn('updated_at', attrs.keys())
-        self.assertIsNotNone(attrs['updated_at'])
-        self.assertIn(attrs['updated_at'], attrs.values())
-        self.assertIn(attrs['created_at'], attrs.values())
-        self.assertIn(attrs['id'], attrs.values())
-        self.assertNotIsInstance(attrs['updated_at'], str)
-        self.assertNotIsInstance(attrs['updated_at'], int)
-        self.assertNotIsInstance(attrs['updated_at'], dict)
-        self.assertNotIsInstance(attrs['updated_at'], list)
+        base_model = BaseModel()
+        base_model.save()
+        base_attrs = base_model.__dict__
+        self.assertIsInstance(base_attrs['updated_at'], datetime)
+        self.assertNotEqual(base_attrs['updated_at'], base_attrs['created_at'])
+        self.assertIn('updated_at', base_attrs.keys())
+        self.assertIsNotNone(base_attrs['updated_at'])
+        self.assertIn(base_attrs['updated_at'], base_attrs.values())
+        self.assertIn(base_attrs['created_at'], base_attrs.values())
+        self.assertIn(base_attrs['id'], base_attrs.values())
+        self.assertIsNone(base_model.save())
+        
 
     def test_str(self):
         """Tests str method"""
