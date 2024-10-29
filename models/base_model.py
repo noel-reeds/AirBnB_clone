@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 from datetime import datetime as dt
-from models import storage 
 import uuid
 
 
 class BaseModel:
     """Defines all common attr./methods for other classes"""
     def __init__(self, *args, **kwargs):
+        from models import storage
         if kwargs:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
@@ -24,6 +24,7 @@ class BaseModel:
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
+        from models import storage
         self.updated_at = dt.now()
         storage.save()
 

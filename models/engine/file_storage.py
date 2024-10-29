@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """JSON Encoding and Decoding Module"""
-from models import *
+from models import base_model, review, user, amenity, city, place, state
 import json
 
 
 class FileStorage:
     """Serializes and deserializes data structures and objects"""
-    __file_path = "file2.json"
+    __file_path = "file.json"
     __objects = {}
 
     def all(self):

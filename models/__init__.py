@@ -7,7 +7,7 @@ from .engine import file_storage as fs
 storage = fs.FileStorage()
 
 # read json and store objects in a dictionary.
-# storage.reload()
+storage.reload()
 
 __all__ = [
     "base_model",
