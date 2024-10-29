@@ -9,6 +9,23 @@ A basic command interpreter to manage objects for the HBnB.
     Do operations on objects (count, compute stats, etc…).  
     Update attributes of an object.  
     Destroy an object.  
+
+## HOW TO RUN THE CONSOLE.  
+To run the console on the command line, simply:  
+```
+python3 console.py  
+```
+  
+For help to display all commands:  
+```
+help or ?  
+```
+  
+For help on a specific command:  
+```
+help <command> or ? <command>  
+```
+
   
 ## LEARNING RESOURCES.  
   [cmd module wiki page](https://wiki.python.org/moin/CmdModule)  
