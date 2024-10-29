@@ -1,13 +1,7 @@
 #!/usr/bin/python3
 """JSON Encoding and Decoding Module"""
+from models import *
 import json
-from models.base_model import BaseModel
-from models.amenity import Amenity
-from models.city import City
-from models.place import Place
-from models.state import State
-from models.review import Review
-from models.user import User
 
 
 class FileStorage:
@@ -35,25 +29,24 @@ class FileStorage:
             json.dump(serialized_objects, my_file)
 
     def reload(self):
-        """Deserializes a JSON file into __objects"""
+        """Deserializes a JSON file into python objects(dictionary)"""
         classes = {
-            "BaseModel": BaseModel,
-            "Amenity": Amenity,
-            "City": City,
-            "Place": Place,
-            "State": State,
-            "Review": Review,
-            "User": User
+            "BaseModel": base_model.BaseModel,
+            "Amenity": amenity.Amenity,
+            "City": city.City,
+            "Place": place.Place,
+            "State": state.State,
+            "Review": review.Review,
+            "User": user.User
             }
         try:
-            with open(self.__file_path, mode="r", encoding="utf-8") \
-                    as my_file:
+            with open(self.__file_path, mode="r", encoding="utf-8") as my_file:
                 python_obj = json.load(my_file)
-            for key, value in python_obj.items():
+            for key, kwargs in python_obj.items():
                 class_name, obj_id = key.split('.')
                 if class_name in classes:
                     obj_class_name = classes[class_name]
-                    instance = obj_class_name(**value)
+                    instance = obj_class_name(**kwargs)
                     self.__objects[key] = instance
         except FileNotFoundError:
             pass

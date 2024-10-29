@@ -1,6 +1,7 @@
 #!/usr/bin/python3
-import uuid
 from datetime import datetime as dt
+from models import storage 
+import uuid
 
 
 class BaseModel:
@@ -19,12 +20,12 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = dt.now()
             self.updated_at = dt.now()
-            # storage.new(self)
+            storage.new(self)
 
     def save(self):
         """ updates attr 'updated_at' with the current datetime"""
         self.updated_at = dt.now()
-        # storage.save()
+        storage.save()
 
     def __str__(self):
         """returns an unofficial str rep' of an instance"""
