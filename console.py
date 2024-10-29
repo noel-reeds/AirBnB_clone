@@ -65,6 +65,10 @@ instances based or not on the class name"""
             final_dict = BaseModel.to_dict(self)
             return final_dict
 
+    def emptyline(self):
+        """overwrites default empty line"""
+        pass
+
     def do_update(self, *args):
         """Updates an instance based on the class name and id"""
         pass
