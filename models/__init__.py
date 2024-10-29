@@ -1,6 +1,17 @@
 #!/usr/bin/python3
-"""Create a unique 'FileStorage' instance"""
-#from models.engine.file_storage import FileStorage
+"""Initializes modules in models"""
+from .engine import file_storage as fs
 
-#storage = FileStorage()
-#storage.reload()
+
+# instantiates FileStorage
+storage = fs.FileStorage()
+
+# read json and store objects in a dictionary.
+storage.reload()
+
+__all__ = [
+            "base_model", "review",
+            "user", "amenity", "city",
+            "place", "state"
+            ]
+
