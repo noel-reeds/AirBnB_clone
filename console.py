@@ -115,4 +115,4 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         HBNBCommand().onecmd(' '.join(sysargv[1:]))
     else:
-        HBNBCommand().cmdloop("Karibu, type 'help' and start exploring.")
+        HBNBCommand().cmdloop()
