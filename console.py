@@ -27,9 +27,12 @@ class HBNBCommand(cmd.Cmd):
         elif cmd_cls[0] != "BaseModel":
             print("** class doesn't exist **")
             return
-        bm = base()
-        store.save()
-        print(bm.id)
+        try:
+            bm = base()
+            store.save()
+            print(bm.id)
+        except: Exception as err:
+            print(err)
 
     def do_show(self, *args):
         """
