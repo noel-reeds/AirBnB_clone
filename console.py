@@ -126,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         new_attr = cls_attr[2]
-        new_value = str(cls_attr[3])
+        new_value = cls_attr[3].strip('"')
         assert key in all_objs.keys()
         modified = all_objs[key]
         modified.__dict__[new_attr] = new_value
