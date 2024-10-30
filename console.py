@@ -8,7 +8,10 @@ import sys
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    models = ["BaseModel", "User"]
+    models = [
+        "BaseModel", "User", "Place",
+        "State", "City", "Amenity","Review"
+        ]
 
     def do_quit(self, *args):
         """Exits the console."""
@@ -26,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         if len(cmd_cls) != 1:
             print("** class name missing **")
             return
-        elif cmd_cls[0] not in models:
+        elif cmd_cls[0] not in self.models:
             print("** class doesn't exist **")
             return
         try:
@@ -45,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(cls_id) != 2:
             print("** instance id missing **")
             return
-        elif cls_id[0] not in models:
+        elif cls_id[0] not in self.models:
             print("** class doesn't exist **")
             return
         try:
@@ -68,7 +71,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(cls_id) != 2:
             print("** instance id missing **") 
             return
-        elif cls_id[0] not in models:
+        elif cls_id[0] not in self.models:
             print("** class doesn't exist **")
             return
         try:
@@ -92,10 +95,10 @@ class HBNBCommand(cmd.Cmd):
             all_objs = store.all()
             [print(obje) for obje in all_objs.values()]
             return
-        elif len(cls_name) == 1 and cls_name[0] != 'BaseModel':
+        elif len(cls_name) == 1 and cls_name[0] not in self.models:
             print("** class doesn't exist **")
             return
-        elif cls_name[0] in models:
+        elif cls_name[0] in self.models:
             store.reload()
             all_objs = store.all()
             [print(obje) for obje in all_objs.values()]
@@ -111,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
         if len(cls_attr) == 0:
             print("** class name missing **")
             return
-        elif cls_attr[0] not in models:
+        elif cls_attr[0] not in self.models:
             print("** class doesn't exist **")
             return
         elif len(cls_attr) == 1:
