@@ -101,17 +101,37 @@ class HBNBCommand(cmd.Cmd):
             return
 
     def emptyline(self):
-        """
-        Overwrites default empty line.
-        """
+        """Overwrites default empty line."""
         pass
 
-    def do_update(self, *args):
-        """
-        Updates an instance based on the class name and id.
-        """
-        pass
-
+    def do_update(self, args):
+        """Updates an instance based on the cls name and id."""
+        cls_attr = args.split()
+        if len(cls_attr) == 0:
+            print("** class name missing **")
+            return
+        elif len(cls_attr) == 1:
+            print("** instance id missing **")
+            return
+        key = f"{cls_attr[0]}.{cls_attr[1]}"
+        store.reload()
+        all_objs = store.all()
+        if key not in all_objs.keys():
+            print("** no instance found **")
+            return
+        elif len(cls_attr) == 2:
+            print("** attribute name missing **")
+            return
+        elif len(cls_attr) == 3:
+            print("** value missing **")
+            return
+        new_attr = cls_attr[2]
+        new_value = str(cls_attr[3])
+        assert key in all_objs.keys()
+        modified = all_objs[key]
+        modified.__dict__[new_attr] = new_value
+        store.save()
+        return
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
