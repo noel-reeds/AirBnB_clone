@@ -58,9 +58,7 @@ class HBNBCommand(cmd.Cmd):
             print(err)
 
     def do_destroy(self, args):
-        """
-        Deletes an instance based on the class name and id.
-        """
+        """Deletes an instance based on the class name and id."""
         if args == 1:
             print("** class name missing")
         elif sys.argv[1] is not BaseModel:
