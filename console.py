@@ -110,6 +110,9 @@ class HBNBCommand(cmd.Cmd):
         if len(cls_attr) == 0:
             print("** class name missing **")
             return
+        elif cls_attr[0] != 'BaseModel':
+            print("** class doesn't exist **")
+            return
         elif len(cls_attr) == 1:
             print("** instance id missing **")
             return
