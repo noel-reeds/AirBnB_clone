@@ -9,17 +9,23 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, *args):
-        """Exits the console."""
+        """
+        Exits the console.
+        """
         print("Thank you and goodbye!")
         return True
 
     def do_EOF(self, *args):
-        """Exits the program"""
+        """
+        Exits the program
+        """
         print("Goodbye!")
         return True
 
     def do_create(self, *args):
-        """Creates an instance of BaseModel"""
+        """
+        Creates an instance of BaseModel.
+        """
         if args == 1:
             print("** class name missing **")
         elif sys.argv[1] is not BaseModel:
@@ -29,8 +35,10 @@ class HBNBCommand(cmd.Cmd):
         print(obj.id)
 
     def do_show(self, *args):
-        """Prints a str rep of an instance based \
-on class name and id."""
+        """
+        Prints a str rep of an instance based
+        on class name and id.
+        """
         if args == 1:
             print("** class name missing **")
         elif sys.argv[1] is not BaseModel:
@@ -42,7 +50,9 @@ on class name and id."""
         return object_dict[sys.argv[2]]
 
     def do_destroy(self, args):
-        """Deletes an instance based on the class name and id"""
+        """
+        Deletes an instance based on the class name and id.
+        """
         if args == 1:
             print("** class name missing")
         elif sys.argv[1] is not BaseModel:
@@ -55,8 +65,10 @@ on class name and id."""
         BaseModel.save(self)
 
     def do_all(self, *args):
-        """Prints str representation of all \
-instances based or not on the class name"""
+        """
+        Prints str representation of all
+        instances based or not on the class name
+        """
         if args == 2 and sys.argv[1] is not BaseModel:
             print("** class doesn't exist **")
         elif args == 1 and sys.argv[0] == "all":
@@ -66,11 +78,15 @@ instances based or not on the class name"""
             return final_dict
 
     def emptyline(self):
-        """overwrites default empty line"""
+        """
+        Overwrites default empty line.
+        """
         pass
 
     def do_update(self, *args):
-        """Updates an instance based on the class name and id"""
+        """
+        Updates an instance based on the class name and id.
+        """
         pass
 
 
@@ -79,4 +95,4 @@ if __name__ == '__main__':
     if len(sys.argv) > 1:
         HBNBCommand().onecmd(' '.join(sysargv[1:]))
     else:
-        HBNBCommand().cmdloop("Karibu, type 'help' and start exploring..")
+        HBNBCommand().cmdloop("Karibu, type 'help' and start exploring.")
