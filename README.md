@@ -31,6 +31,15 @@ To create an instance of of a class:
 $ create <class name>  
 ```
 
+To show a string representation of an instance:  
+```
+$ show <class name> <instance id>  
+```
+
+To delete an instance from JSON file:  
+```
+$ destroy <class name> <instance id>  
+```
   
 ## LEARNING RESOURCES.  
   [cmd module wiki page](https://wiki.python.org/moin/CmdModule)  
