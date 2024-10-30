@@ -1,12 +1,14 @@
 #!/usr/bin/python3
 from datetime import datetime as dt
+from models import storage
 import uuid
 
 
 class BaseModel:
-    """Defines all common attr./methods for other classes"""
+    """
+    Defines all common attr./methods for other classes.
+    """
     def __init__(self, *args, **kwargs):
-        from models import storage
         if kwargs:
             if "__class__" in kwargs.keys():
                 del kwargs["__class__"]
@@ -23,17 +25,23 @@ class BaseModel:
             storage.new(self)
 
     def save(self):
-        """ updates attr 'updated_at' with the current datetime"""
-        from models import storage
+        """ 
+        Updates attr 'updated_at' with the current datetime.
+        """
         self.updated_at = dt.now()
         storage.save()
 
     def __str__(self):
-        """returns an unofficial str rep' of an instance"""
-        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+        """
+        Returns an unofficial str rep' of an instance
+        """
+        class_name = self.__class__.__name__
+        return f"[{class_name}] ({self.id}) {self.__dict__}"
 
     def to_dict(self):
-        """Returns a key-value pair of the instance"""
+        """
+        Returns a key-value pair of the instance.
+        """
         attrs = self.__dict__
         attrs['created_at'] = attrs['created_at'].isoformat()
         attrs['updated_at'] = attrs['updated_at'].isoformat()

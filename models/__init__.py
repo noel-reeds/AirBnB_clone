@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-"""Initializes modules in models"""
+"""
+Initializes modules in models
+"""
 from .engine import file_storage as fs
 
 
