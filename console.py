@@ -73,7 +73,6 @@ class HBNBCommand(cmd.Cmd):
         try:
             store.reload()
             all_objs = store.all()
-            type(all_objs)
             key = f"{cls_id[0]}.{cls_id[1]}"
             if key in all_objs.keys():
                 all_objs.pop(key)
@@ -84,18 +83,22 @@ class HBNBCommand(cmd.Cmd):
         except (Exception, FileNotFoundError) as err:
             print(err)
 
-    def do_all(self, *args):
-        """
-        Prints str representation of all
-        instances based or not on the class name
-        """
-        if args == 2 and sys.argv[1] is not BaseModel:
+    def do_all(self, args):
+        """Prints str rep of all instances based or not on cls name"""
+        cls_name = args.split()
+        if len(cls_name) == 0:
+            store.reload()
+            all_objs = store.all()
+            [print(obje) for obje in all_objs.values()]
+            return
+        elif len(cls_name) == 1 and cls_name[0] != 'BaseModel':
             print("** class doesn't exist **")
-        elif args == 1 and sys.argv[0] == "all":
-            print("** class doesn't exist **")
-        else:
-            final_dict = BaseModel.to_dict(self)
-            return final_dict
+            return
+        elif cls_name[0] == 'BaseModel':
+            store.reload()
+            all_objs = store.all()
+            [print(obje) for obje in all_objs.values()]
+            return
 
     def emptyline(self):
         """
