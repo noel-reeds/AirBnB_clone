@@ -62,7 +62,7 @@ class HBNBCommand(cmd.Cmd):
         """Deletes an instance based on the class name and id."""
         cls_id = args.split()
         if len(cls_id) == 0:
-            print("** class name missing")
+            print("** class name missing **")
             return
         elif len(cls_id) != 2:
             print("** instance id missing **") 
