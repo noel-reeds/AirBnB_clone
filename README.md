@@ -4,11 +4,11 @@
 
 ## THE CONSOLE.  
 A basic command interpreter to manage objects for the HBnB.  
-    Create a new object (ex: a new User or a new Place).  
-    Retrieve an object from a file, a database etc…  
-    Do operations on objects (count, compute stats, etc…).  
-    Update attributes of an object.  
-    Destroy an object.  
+- Create a new object (ex: a new User or a new Place).  
+- Retrieve an object from a file, a database etc…  
+- Do operations on objects (count, compute stats, etc…).  
+- Update attributes of an object.  
+- Destroy an object.  
 
 ## HOW TO RUN THE CONSOLE.  
 To run the console on the command line, simply:  
