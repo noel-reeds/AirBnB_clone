@@ -24,6 +24,7 @@ class HBNBCommand(cmd.Cmd):
         cmd_cls = args.split()
         if len(cmd_cls) != 1:
             print("** class name missing **")
+            return
         elif cmd_cls[0] != "BaseModel":
             print("** class doesn't exist **")
             return
@@ -34,18 +35,27 @@ class HBNBCommand(cmd.Cmd):
         except Exception as err:
             print(err)
 
-    def do_show(self, *args):
-        """Prints a str rep of an instance based
-        on class name and id."""
-        if args == 1:
+    def do_show(self, args):
+        """Prints str rep of an obj based on class name and id"""
+        cls_id = args.split()
+        if len(cls_id) == 0:
             print("** class name missing **")
-        elif sys.argv[1] is not BaseModel:
-            print("** class doesn't exist **")
-        elif args == 2:
+            return
+        elif len(cls_id) != 2:
             print("** instance id missing **")
-        elif sys.argv[2] not in object_dict.keys():
+            return
+        elif cls_id[0] != "BaseModel":
+            print("** class doesn't exist **")
+            return
+        try:
+            key = f"{cls_id[0]}.{cls_id[1]}"
+            all_objs = store.all()
+            if key in all_objs.keys():
+                print(all_objs[key])
             print("** no instance found **")
-        return object_dict[sys.argv[2]]
+            return
+        except Exception as err:
+            print(err)
 
     def do_destroy(self, args):
         """
