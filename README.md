@@ -13,17 +13,22 @@ A basic command interpreter to manage objects for the HBnB.
 ## HOW TO RUN THE CONSOLE.  
 To run the console on the command line, simply:  
 ```
-python3 console.py  
+$ python3 console.py  
 ```
   
 For help to display all commands:  
 ```
-help or ?  
+$ help or $ ?  
 ```
   
 For help on a specific command:  
 ```
-help <command> or ? <command>  
+$ help <command> or $ ? <command>  
+```
+
+To create an instance of of a class:  
+```
+$ create <class name>  
 ```
 
   
