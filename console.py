@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 """The console module"""
 import cmd
-from models.base_model import BaseModel
+from models.base_model import BaseModel as base
+from models import storage as store
 import sys
 
 
@@ -9,30 +10,26 @@ class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
 
     def do_quit(self, *args):
-        """
-        Exits the console.
-        """
+        """Exits the console."""
         print("Thank you and goodbye!")
         return True
 
     def do_EOF(self, *args):
-        """
-        Exits the program
-        """
+        """Exits the program"""
         print("Goodbye!")
         return True
 
-    def do_create(self, *args):
-        """
-        Creates an instance of BaseModel.
-        """
-        if args == 1:
+    def do_create(self, args):
+        """Creates an instance of BaseModel."""
+        cmd_cls = args.split()
+        if len(cmd_cls) != 1:
             print("** class name missing **")
-        elif sys.argv[1] is not BaseModel:
+        elif cmd_cls[0] != "BaseModel":
             print("** class doesn't exist **")
-        obj = BaseModel()
-        FileStorage.save(obj)
-        print(obj.id)
+            return
+        bm = base()
+        store.save()
+        print(bm.id)
 
     def do_show(self, *args):
         """
