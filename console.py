@@ -48,27 +48,41 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         try:
-            key = f"{cls_id[0]}.{cls_id[1]}"
+            store.reload()
             all_objs = store.all()
+            key = f"{cls_id[0]}.{cls_id[1]}"
             if key in all_objs.keys():
                 print(all_objs[key])
-            print("** no instance found **")
-            return
+            else:
+                print("** no instance found **")
         except Exception as err:
             print(err)
 
     def do_destroy(self, args):
         """Deletes an instance based on the class name and id."""
-        if args == 1:
+        cls_id = args.split()
+        if len(cls_id) == 0:
             print("** class name missing")
-        elif sys.argv[1] is not BaseModel:
+            return
+        elif len(cls_id) != 2:
+            print("** instance id missing **") 
+            return
+        elif cls_id[0] != "BaseModel":
             print("** class doesn't exist **")
-        if args == 2:
-            print("** instance id missing **")
-        elif sys.argv[2] not in object_dict.keys():
-            print("** no instance found **")
-        del object_dict[sys.argv[2]]
-        BaseModel.save(self)
+            return
+        try:
+            store.reload()
+            all_objs = store.all()
+            type(all_objs)
+            key = f"{cls_id[0]}.{cls_id[1]}"
+            if key in all_objs.keys():
+                all_objs.pop(key)
+                store.save()
+                return
+            else:
+                print("** no instance found **")
+        except (Exception, FileNotFoundError) as err:
+            print(err)
 
     def do_all(self, *args):
         """
