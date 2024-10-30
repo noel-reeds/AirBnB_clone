@@ -10,7 +10,7 @@ A basic command interpreter to manage objects for the HBnB.
 - Update attributes of an object.  
 - Destroy an object.  
 
-## HOW TO RUN THE CONSOLE.  
+### HOW TO RUN THE CONSOLE.  
 To run the console on the command line, simply:  
 ```
 $ python3 console.py  
@@ -41,9 +41,11 @@ To delete an instance from JSON file:
 $ destroy <class name> <instance id>  
 ```
   
-## LEARNING RESOURCES.  
-  [cmd module wiki page](https://wiki.python.org/moin/CmdModule)  
-  [unittest module](https://docs.python.org/3.8/library/unittest.html#module-unittest).  
-  [Python test cheatsheetPython test cheatsheet](https://www.pythonsheets.com/notes/python-tests.html).  
-  [datetime](https://docs.python.org/3.8/library/datetime.html).   
-  [uuid module](https://docs.python.org/3.8/library/uuid.html).  
+### LEARNING RESOURCES.  
+- [cmd module wiki page](https://wiki.python.org/moin/CmdModule)  
+- [unittest module](https://docs.python.org/3.8/library/unittest.html#module-unittest).  
+- [Python test cheatsheetPython test cheatsheet](https://www.pythonsheets.com/notes/python-tests.html).  
+- [datetime](https://docs.python.org/3.8/library/datetime.html).   
+- [uuid module](https://docs.python.org/3.8/library/uuid.html).  
+- [cmd module in depth](http://pymotw.com/2/cmd/).  
+- [args/kwargs](https://yasoob.me/2013/08/04/args-and-kwargs-in-python-explained/).  
