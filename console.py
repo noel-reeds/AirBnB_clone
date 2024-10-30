@@ -31,14 +31,12 @@ class HBNBCommand(cmd.Cmd):
             bm = base()
             store.save()
             print(bm.id)
-        except: Exception as err:
+        except Exception as err:
             print(err)
 
     def do_show(self, *args):
-        """
-        Prints a str rep of an instance based
-        on class name and id.
-        """
+        """Prints a str rep of an instance based
+        on class name and id."""
         if args == 1:
             print("** class name missing **")
         elif sys.argv[1] is not BaseModel:
