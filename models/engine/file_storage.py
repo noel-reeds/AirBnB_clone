@@ -1,35 +1,25 @@
 #!/usr/bin/python3
-"""
-Persists a JSON string into a file and vice versa..
-"""
+"""Persists a JSON string into a file and vice versa.."""
 import json
 
 
 class FileStorage:
-    """
-    Serializes and deserializes data structures and objects.
-    """
+    """Serializes and deserializes data structures and objects."""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """
-        Returns the __objects dictionary.
-        """
+        """Returns the __objects dictionary."""
         return self.__objects
 
     def new(self, obj):
-        """
-        Adds obj to __objects dict with the key <obj class name>.id
-        """
+        """Adds obj to __objects dict with the key <obj class name>.id"""
         class_name = obj.__class__.__name__
         key = f"{class_name}.{obj.id}"
         self.__objects[key] = obj
 
     def save(self):
-        """
-        Serializes __objects to JSON file.
-        """
+        """Serializes __objects to JSON file."""
         serialized_objects = {}
         for key, value in self.__objects.items():
             # value here references an object at the specified key
@@ -39,9 +29,7 @@ class FileStorage:
             json.dump(serialized_objects, my_file)
 
     def reload(self):
-        """
-        Deserializes a JSON file into python objects(dictionary).
-        """
+        """Deserializes a JSON file into python objects(dictionary)."""
         from models import base_model, review, amenity
         from models import city, place, state, user
         classes = {
@@ -62,6 +50,5 @@ class FileStorage:
                     obj_class_name = classes[class_name]
                     instance = obj_class_name(**kwargs)
                     self.__objects[key] = instance
-            return self.__objects
         except FileNotFoundError:
             pass
