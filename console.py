@@ -81,7 +81,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         elif len(cls_id) != 2:
-            print("** instance id missing **") 
+            print("** instance id missing **")
             return
         elif cls_id[0] not in self.classes.keys():
             print("** class doesn't exist **")
@@ -151,6 +151,7 @@ class HBNBCommand(cmd.Cmd):
         modified.__dict__[new_attr] = new_value
         store.save()
         return
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
