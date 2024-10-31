@@ -2,23 +2,33 @@
 """The console module"""
 import cmd
 from models.base_model import BaseModel as base
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 from models import storage as store
-import sys
 
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
-    models = [
-        "BaseModel", "User", "Place",
-        "State", "City", "Amenity","Review"
-        ]
+    classes = {
+        "User": User,
+        "Amenity": Amenity,
+        "City": City,
+        "Place": Place,
+        "State": State,
+        "Review": Review,
+        "BaseModel": base
+    }
 
-    def do_quit(self, *args):
+    def do_quit(self, args):
         """Exits the console."""
         print("Thank you and goodbye!")
         return True
 
-    def do_EOF(self, *args):
+    def do_EOF(self, args):
         """Exits the program"""
         print("Goodbye!")
         return True
@@ -26,16 +36,18 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Creates an instance of BaseModel."""
         cmd_cls = args.split()
-        if len(cmd_cls) != 1:
+        if len(cmd_cls) != 1 or len(cmd_cls) > 1:
             print("** class name missing **")
             return
-        elif cmd_cls[0] not in self.models:
+        elif cmd_cls[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
         try:
-            bm = base()
+            cls_key = cmd_cls[0]
+            cls = self.classes.get(cls_key)
+            obje = cls()
             store.save()
-            print(bm.id)
+            print(obje.id)
         except Exception as err:
             print(err)
 
@@ -48,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(cls_id) != 2:
             print("** instance id missing **")
             return
-        elif cls_id[0] not in self.models:
+        elif cls_id[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
         try:
@@ -71,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
         elif len(cls_id) != 2:
             print("** instance id missing **") 
             return
-        elif cls_id[0] not in self.models:
+        elif cls_id[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
         try:
@@ -95,10 +107,10 @@ class HBNBCommand(cmd.Cmd):
             all_objs = store.all()
             [print(obje) for obje in all_objs.values()]
             return
-        elif len(cls_name) == 1 and cls_name[0] not in self.models:
+        elif len(cls_name) == 1 and cls_name[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
-        elif cls_name[0] in self.models:
+        elif cls_name[0] in self.classes.keys():
             store.reload()
             all_objs = store.all()
             [print(obje) for obje in all_objs.values()]
@@ -114,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
         if len(cls_attr) == 0:
             print("** class name missing **")
             return
-        elif cls_attr[0] not in self.models:
+        elif cls_attr[0] not in self.classes.keys():
             print("** class doesn't exist **")
             return
         elif len(cls_attr) == 1:
