@@ -9,4 +9,4 @@ class State(BaseModel):
 
     def __init__(self, *args, **kwargs):
         """instantiates state model"""
-        super().__init(*args, **kwargs)
+        super().__init__(*args, **kwargs)
