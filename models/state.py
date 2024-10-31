@@ -1,8 +1,12 @@
 #!/usr/bin/python3
-"""More classes"""
+"""models on states"""
 from models.base_model import BaseModel
 
 
 class State(BaseModel):
-    """Inherits from BaseModel"""
+    """Structure of State model"""
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """instantiates state model"""
+        super().__init(*args, **kwargs)
