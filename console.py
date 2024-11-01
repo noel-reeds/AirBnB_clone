@@ -25,7 +25,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_quit(self, args):
         """Exits the console."""
-        print("Thank you and goodbye!")
         return True
 
     def do_EOF(self, args):
@@ -124,8 +123,7 @@ class HBNBCommand(cmd.Cmd):
             cls_id = key.split(".")
             assert cls_id[0] == cls_name[0]
             objs.append(all_objs[key])
-        [print(obje) for obje in objs] 
-
+        [print(obje) for obje in objs]
 
     def emptyline(self):
         """Overwrites default empty line."""
