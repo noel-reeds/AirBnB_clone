@@ -30,7 +30,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_EOF(self, args):
         """Exits the program"""
-        print("Goodbye!")
         return True
 
     def do_create(self, args):
@@ -115,6 +114,18 @@ class HBNBCommand(cmd.Cmd):
             all_objs = store.all()
             [print(obje) for obje in all_objs.values()]
             return
+        cls_name = args.split(".")
+        assert len(class_name) == 2
+        assert cls_name[0] in self.classes.keys()
+        store.reload()
+        all_objs = store.all()
+        objs = []
+        for key in all_objs.keys():
+            cls_id = key.split(".")
+            assert cls_id[0] == cls_name[0]
+            objs.append(all_objs[key])
+        [print(obje) for obje in objs] 
+
 
     def emptyline(self):
         """Overwrites default empty line."""
