@@ -114,7 +114,8 @@ class HBNBCommand(cmd.Cmd):
             [print(obje) for obje in all_objs.values()]
             return
         cls_name = args.split(".")
-        assert len(class_name) == 2
+        assert len(cls_name) == 2
+        assert cls_name[1] == "all()"
         assert cls_name[0] in self.classes.keys()
         store.reload()
         all_objs = store.all()
@@ -160,6 +161,24 @@ class HBNBCommand(cmd.Cmd):
         modified.__dict__[new_attr] = new_value
         store.save()
         return
+
+    def default(self, args):
+        """Overwrite the default method"""
+        cls_fn = args.split(".")
+        if len(cls_fn) == 2 and cls_fn[1] == "all()":
+            if cls_fn[0] in self.classes.keys():
+                store.reload()
+                all_objs = store.all()
+                tar_objs = []
+                for key in all_objs.keys():
+                    cls_id = key.split(".")
+                    if cls_fn[0] in cls_id:
+                        tar_objs.append(all_objs[key])
+                [print(obj) for obj in tar_objs]
+            else:
+                self.stdout.write("*** Uknown syntax: %s\n" % args)
+        else:
+            self.stdout.write("*** Uknown syntax: %s\n" % args)
 
 
 if __name__ == '__main__':
