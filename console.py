@@ -164,9 +164,10 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, args):
         """Overwrite the default method"""
+        methods = ["all()", "count", "show"]
         cls_fn = args.split(".")
-        if len(cls_fn) == 2 and cls_fn[1] == "all()":
-            if cls_fn[0] in self.classes.keys():
+        if len(cls_fn) == 2 and cls_fn[0] in self.classes.keys():
+            if cls_fn[1] == "all()":
                 store.reload()
                 all_objs = store.all()
                 tar_objs = []
@@ -175,6 +176,15 @@ class HBNBCommand(cmd.Cmd):
                     if cls_fn[0] in cls_id:
                         tar_objs.append(all_objs[key])
                 [print(obj) for obj in tar_objs]
+            elif cls_fn[1] == "count":
+                store.reload()
+                all_objs = store.all()
+                count = 0
+                for key in all_objs.keys():
+                    cls_id = key.split(".")
+                    if cls_fn[0] in cls_id:
+                        count += 1
+                print(count)
             else:
                 self.stdout.write("*** Uknown syntax: %s\n" % args)
         else:
