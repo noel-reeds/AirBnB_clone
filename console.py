@@ -185,6 +185,18 @@ class HBNBCommand(cmd.Cmd):
                     if cls_fn[0] in cls_id:
                         count += 1
                 print(count)
+            elif "show" in cls_fn[1]:
+                obje_id = cls_fn[1].strip('show(")')
+                if obje_id == "":
+                    print("** instance id missing **")
+                    return
+                store.reload()
+                objs = store.all()
+                key = f"{cls_fn[0]}.{obje_id}"
+                if key in objs.keys():
+                    print(objs[key])
+                    return
+                print("** no instance found **")
             else:
                 self.stdout.write("*** Uknown syntax: %s\n" % args)
         else:
