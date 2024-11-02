@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 """The console module"""
+import ast
 import cmd
 from models.base_model import BaseModel as base
 from models.user import User
@@ -210,6 +211,27 @@ class HBNBCommand(cmd.Cmd):
                     store.save()
                     return
                 print("** no instance found **")
+            elif "update" in cls_fn[1]:
+                print(cls_fn[1])
+                tup = ast.literal_eval(cls_fn[1].strip("update"))
+                print(tup)
+                if len(tup) == 0:
+                    print("** instance id missing **")
+                    return
+                store.reload()
+                objs = store.all()
+                obj_id = tup[0]
+                key = f"{cls_fn[0]}.{obj_id}"
+                if key not in objs.keys():
+                    print("** no instance found **")
+                    return
+                elif len(tup) == 1:
+                    print("** attribute name missing **")
+                    return
+                elif len(tup) == 2:
+                    print("** value missing **")
+                objs[key].__dict__[tup[1]] = tup[2]
+                store.save
             else:
                 self.stdout.write("*** Uknown syntax: %s\n" % args)
         else:
