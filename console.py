@@ -176,7 +176,7 @@ class HBNBCommand(cmd.Cmd):
                     if cls_fn[0] in cls_id:
                         tar_objs.append(all_objs[key])
                 [print(obj) for obj in tar_objs]
-            elif cls_fn[1] == "count":
+            elif cls_fn[1] == "count()":
                 store.reload()
                 all_objs = store.all()
                 count = 0
