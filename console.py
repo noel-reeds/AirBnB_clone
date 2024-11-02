@@ -212,11 +212,13 @@ class HBNBCommand(cmd.Cmd):
                     return
                 print("** no instance found **")
             elif "update" in cls_fn[1]:
-                print(cls_fn[1])
-                tup = ast.literal_eval(cls_fn[1].strip("update"))
-                print(tup)
-                if len(tup) == 0:
+                args = cls_fn[1].strip("update()")
+                if args == "":
                     print("** instance id missing **")
+                    return
+                tup = ast.literal_eval(args)
+                if type(tup) is str:
+                    print("** attribute name missing **")
                     return
                 store.reload()
                 objs = store.all()
@@ -230,8 +232,9 @@ class HBNBCommand(cmd.Cmd):
                     return
                 elif len(tup) == 2:
                     print("** value missing **")
+                    return
                 objs[key].__dict__[tup[1]] = tup[2]
-                store.save
+                store.save()
             else:
                 self.stdout.write("*** Uknown syntax: %s\n" % args)
         else:
