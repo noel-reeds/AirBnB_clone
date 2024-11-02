@@ -197,6 +197,19 @@ class HBNBCommand(cmd.Cmd):
                     print(objs[key])
                     return
                 print("** no instance found **")
+            elif "destroy" in cls_fn[1]:
+                obje_id = cls_fn[1].strip('destroy(")')
+                if obje_id == "":
+                    print("** instance id missing **")
+                    return
+                store.reload()
+                objs = store.all()
+                key = f"{cls_fn[0]}.{obje_id}"
+                if key in objs.keys():
+                    objs.pop(key)
+                    store.save()
+                    return
+                print("** no instance found **")
             else:
                 self.stdout.write("*** Uknown syntax: %s\n" % args)
         else:
