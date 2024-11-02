@@ -231,6 +231,11 @@ class HBNBCommand(cmd.Cmd):
                     print("** attribute name missing **")
                     return
                 elif len(tup) == 2:
+                    if type(tup[1]) is dict:
+                        for key_id, value_id in tup[1].items():
+                            objs[key].__dict__[key_id] = value_id
+                        store.save()
+                        return
                     print("** value missing **")
                     return
                 objs[key].__dict__[tup[1]] = tup[2]
