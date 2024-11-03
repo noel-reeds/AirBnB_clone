@@ -165,7 +165,7 @@ class HBNBCommand(cmd.Cmd):
 
     def default(self, args):
         """Overwrite the default method"""
-        methods = ["all()", "count", "show"]
+        methods = ["all()", "count", "show", "update"]
         cls_fn = args.split(".")
         if len(cls_fn) == 2 and cls_fn[0] in self.classes.keys():
             if cls_fn[1] == "all()":
