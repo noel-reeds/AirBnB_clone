@@ -5,9 +5,9 @@
 	width: 100%;
 	border: 1px solid; #DDDDD;
 	border-radius: 4px;
-	margin: auto;
-	
+	margin: auto;	
 }
+
 .filters button {
 	font-size: 18px;
 	background: #FF5A5F;
@@ -18,6 +18,10 @@
 	border-radius: 4px;
 	margin: auto;
 	margin-right: 30px;
+}
+
+.filters button:hover {
+	opacity: 90%;
 }
 
 button p {
