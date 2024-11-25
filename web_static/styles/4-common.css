@@ -3,7 +3,7 @@ body {
 	padding: 0px;
 	color: #484848;
 	font-size: 14px;
-	font-family: Circular,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: Circular, "Helvetica Neue", Helvetica, Arial, serif;
 }
 .container {
 	margin: auto;
@@ -31,4 +31,27 @@ h4 {
 	margin-top: 0;
 	font-weight: 400;
 	font-size: 14px;
+}
+
+.popover {
+	display: none;
+	margin: 0;
+	top: 100%;
+	left: 0;
+	
+}
+
+ul {
+	list-style-type: none;
+}
+
+
+.locations:hover .popover,
+.amenities:hover .popover {
+	display: block;
+	background-color: #FAFAFA;
+	width: 100%;
+	border: 1px solid #DDDDDD;
+	border-radius: 4px;
+	margin-left: 0;
 }
