@@ -1,10 +1,7 @@
 footer {
-	background: white;
+	display: flex;
+	justify-content: center;
 	height: 60px%;
 	width: 100%;
-	position: absolute;
-	bottom: 0px;
-}
-footer p {
-	text-align: center;
+	bottom: 0;
 }
