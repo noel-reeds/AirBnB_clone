@@ -1,3 +1,6 @@
+body {
+	font-family: serif;
+}
 .locations,
 .amenities {
 	width: 25%;
@@ -42,11 +45,6 @@ ul {
 	border-radius: 4px;
 }
 
-.places {
-	display: flex;
-	flex-direction: column;
-}
-
 .places h1 {
 	font-size: 30px;
 }
@@ -60,7 +58,8 @@ ul {
 	border-radius: 4px;
 }
 
-.places .articles-container h2 {
+.places .article-container h2 {
+	margin-top: 0px;
 	text-align: center;
 	font-size: 30px;
 }
@@ -72,6 +71,7 @@ ul {
 }
 
 .places .article-container .price_by_night {
+	position: absolute;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -81,7 +81,6 @@ ul {
 	border-radius: 50%;
 	min-width: 60px;
 	min-height: 60px;
-	position: absolute;
 	top: 10px;
 	right: 10px;
 }
@@ -93,3 +92,5 @@ ul {
 	border-top: 1px solid #DDDDDD;
 	border-bottom: 1px solid #DDDDDD;
 }
+
+
