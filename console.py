@@ -15,14 +15,9 @@ from models import storage as store
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb) "
     classes = {
-        "User": User,
-        "Amenity": Amenity,
-        "City": City,
-        "Place": Place,
-        "State": State,
-        "Review": Review,
-        "BaseModel": base
-    }
+        "User": User, "Amenity": Amenity, "City": City,
+        "Place": Place, "State": State, "Review": Review, "BaseModel": base
+        }
 
     def do_quit(self, args):
         """Exits the console."""
@@ -34,6 +29,7 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates an instance of BaseModel."""
+        print(f'{args}')
         cmd_cls = args.split()
         if len(cmd_cls) != 1 or len(cmd_cls) > 1:
             print("** class name missing **")
