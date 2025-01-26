@@ -29,7 +29,6 @@ class HBNBCommand(cmd.Cmd):
 
     def do_create(self, args):
         """Creates an instance of BaseModel."""
-        print(f'{args}')
         cmd_cls = args.split()
         if len(cmd_cls) != 1 or len(cmd_cls) > 1:
             print("** class name missing **")
